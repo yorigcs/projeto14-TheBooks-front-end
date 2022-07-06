@@ -9,7 +9,7 @@ const TopBar = () => (
     </Header>
 )
 const Header = styled.header`
-    position: fixed;
+    position: sticky;
     top: 0;
     right: 0;
     display: flex;
