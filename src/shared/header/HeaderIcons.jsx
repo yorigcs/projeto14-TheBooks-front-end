@@ -8,9 +8,9 @@ import { FaUserCircle } from "react-icons/fa";
 const HeaderIcons = () => {
     return (
         <IconStyle>
-            <FaUserCircle size="2rem" color="white" />
-            <HiShoppingCart size="2rem" color="white" />
-            <BsList size="2rem" color="white" />
+            <FaUserCircle size="2em" color="white" />
+            <HiShoppingCart size="2em" color="white" />
+            <BsList size="2em" color="white" />
         </IconStyle>
     )
 }
