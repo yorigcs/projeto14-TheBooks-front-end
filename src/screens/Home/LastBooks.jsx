@@ -3,20 +3,27 @@ import axiosI from "../../services/axios";
 import { useState, useEffect } from "react";
 import ButtonLoadMore from "../../shared/buttons/ButtonLoadMore";
 import { ThreeDots } from "react-loader-spinner";
-
+import Lottie from 'lottie-react'
+import errorAnimation from '../../assets/lottie/error.json'
 const LastBooks = () => {
     const [lastBooks, setLastBooks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [numBooks, setNumBooks] = useState(4);
+    const [failedToLoad, setFailedToLoad] = useState(false)
 
     useEffect(() => {
         setLoading(true)
         axiosI.get(`/books?numBooks=${numBooks}`)
             .then((res) => {
                 setLastBooks(res.data);
-                setLoading(false)
+                setLoading(false);
             })
-            .catch((err) => console.error(err))
+            .catch((err) => {
+                console.error(err);
+                setLoading(false);
+                setFailedToLoad(true)
+
+            })
     }, [numBooks])
 
     const handleLoadMoreBooks = () => {
@@ -26,6 +33,10 @@ const LastBooks = () => {
     const getBooks = () => {
         if (loading) {
             return <ThreeDots width="4em" height="4em" color="white" />
+        }
+
+        if(failedToLoad) {
+            return <Lottie animationData={errorAnimation} loop="false"/>
         }
 
         return (
