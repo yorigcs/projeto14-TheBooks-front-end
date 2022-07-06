@@ -1,8 +1,10 @@
 import TopBar from "../../shared/header";
+import LastBooks from "./LastBooks";
 const Home = () => {
     return (
         <>
-        <TopBar />
+            <TopBar />
+            <LastBooks />
         </>
     )
 }
