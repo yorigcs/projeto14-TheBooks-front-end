@@ -2,8 +2,8 @@ import styled from "styled-components";
 import HeaderTitle from "./HeaderTitle";
 import HeaderIcons from "./HeaderIcons";
 import { useState } from "react";
-import { render } from "react-dom";
-
+import Search from "./Search";
+import AllBooksLink from "./AllBooksLink";
 const TopBar = () => {
     const [renderProfile, setRenderProfile] = useState(false);
     const [renderOptions, setRenderOptions] = useState(false);
@@ -12,7 +12,12 @@ const TopBar = () => {
             return <NavBar>Login/profile</NavBar>
         }
         if (renderOptions) {
-            return <NavBar>Opções</NavBar>
+            return (
+                <NavBar>
+                    <Search />
+                    <AllBooksLink />
+                </NavBar>
+            )
         }
 
         return <></>
