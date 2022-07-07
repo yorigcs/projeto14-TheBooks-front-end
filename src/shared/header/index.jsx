@@ -19,6 +19,7 @@ const Header = styled.header`
     background-color: #A27BEB;
     width: 100%;
     height: 4rem;
+    z-index: 50;
 `;
 
 export default TopBar;
