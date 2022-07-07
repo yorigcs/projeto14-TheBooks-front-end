@@ -7,6 +7,7 @@ import ListIcon from '@mui/icons-material/List';
 
 
 const HeaderIcons = ({ setRenderProfile, setRenderOptions }) => {
+    let navigate = useNavigate()
     const [colorProfile, setColorProfile] = useState(false);
     const [colorOptions, setColorOptions] = useState(false);
 
@@ -30,7 +31,7 @@ const HeaderIcons = ({ setRenderProfile, setRenderOptions }) => {
             </IconStyle>
 
             <IconStyle>
-                <ShoppingCartIcon sx={{ fontSize: 28 }} />
+                <ShoppingCartIcon onClick={() =>navigate("../checkout", {replace: true}) } sx={{ fontSize: 28 }} />
             </IconStyle>
 
             <IconStyle changeColor={colorOptions} onClick={handleOptions}>
