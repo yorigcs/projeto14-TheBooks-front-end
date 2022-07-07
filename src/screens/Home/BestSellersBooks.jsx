@@ -44,7 +44,7 @@ export function BestSellersBooks() {
           bestSellers?.map((book) => (
             <Book key={book._id}>
               <img src={book.image} alt={book.name} />
-              <h3>Quantidade venda: {book.rate}</h3>
+              <h3>Quantidade venda: {book.soldNumber}</h3>
             </Book>
           ))
         )}
