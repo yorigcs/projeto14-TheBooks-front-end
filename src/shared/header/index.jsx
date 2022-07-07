@@ -44,6 +44,7 @@ const Header = styled.header`
     background-color: #a27beb;
     width: 100%;
     height: 4rem;
+    z-index: 50;
 `;
 
 const NavBar = styled.nav`
