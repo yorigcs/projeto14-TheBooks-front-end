@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
 
 import { ThreeDots } from 'react-loader-spinner';
+import { Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import '../../styles/swiper.css';
 
 import axiosI from '../../services/axios';
 
-import ButtonLoadMore from '../../shared/buttons/ButtonLoadMore';
+// import ButtonLoadMore from '../../shared/buttons/ButtonLoadMore';
 
 import {
   Container,
@@ -16,7 +22,7 @@ import {
 export function MostRatedBooks() {
   const [mostRatedBooks, setMostRatedBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [numBooks, setNumBooks] = useState(2);
+  const [numBooks, setNumBooks] = useState(6);
 
   useEffect(() => {
     setIsLoading(true);
@@ -41,15 +47,28 @@ export function MostRatedBooks() {
         {isLoading ? (
           <ThreeDots width="4em" height="4em" color="white" />
         ) : (
-          mostRatedBooks?.map((book) => (
-            <Book key={book._id}>
-              <img src={book.image} alt={book.name} />
-            </Book>
-          ))
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={30}
+            navigation={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+          >
+            {mostRatedBooks?.map((book) => (
+              <SwiperSlide key={book._id}>
+                <Book>
+                  <img src={book.image} alt={book.name} />
+                  <h3>Avaliação: {book.rate}</h3>
+                </Book>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         )}
       </BooksContainer>
 
-      <ButtonLoadMore onClick={handleLoadMoreBooks} />
+      {/* <ButtonLoadMore onClick={handleLoadMoreBooks} /> */}
     </Container>
   );
 }
