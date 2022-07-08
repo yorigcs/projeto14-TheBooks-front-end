@@ -34,7 +34,7 @@ const TopBar = () => {
             )
         }
 
-        return <></>
+        return;
     }
     return (
         <Header>

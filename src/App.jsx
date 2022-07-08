@@ -7,11 +7,12 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <AuthProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <AuthProvider>
           <Routes />
-        </BrowserRouter>
-      </AuthProvider>
+        </AuthProvider>
+      </BrowserRouter>
+
 
     </>
   )
