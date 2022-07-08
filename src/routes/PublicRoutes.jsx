@@ -3,7 +3,7 @@ import Home from '../screens/Home';
 import AllBooks from '../screens/allBooks';
 import CheckOut from '../screens/checkout'
 import Book from '../screens/Book';
-
+import SignUp from '../screens/signUp';
 const PublicRoutes = () => (
     <Routes>
         <Route path='/' element={<Home />}></Route>
@@ -12,6 +12,7 @@ const PublicRoutes = () => (
         <Route path='book'>
             <Route path=':id' element={<Book />} />
         </Route>
+        <Route path='/signUp' element={<SignUp />}></Route>
     </Routes>
 )
 export default PublicRoutes;
