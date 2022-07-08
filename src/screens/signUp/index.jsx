@@ -5,7 +5,9 @@ const SignUp = () => {
     return (
         <>
             <TopBar />
+            <SignUpContainer/ >
         </>
     )
 }
+
 export default SignUp;
