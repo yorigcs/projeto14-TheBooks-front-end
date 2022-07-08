@@ -4,12 +4,28 @@ import HeaderIcons from "./HeaderIcons";
 import { useState } from "react";
 import Search from "./Search";
 import AllBooksLink from "./AllBooksLink";
+import { useAuth } from "../../contexts/auth";
+import LoginButtonProfile from "./LoginButtonProfile";
+import ProfileUser from "./ProfileUser";
+
 const TopBar = () => {
+    const { signed } = useAuth();
     const [renderProfile, setRenderProfile] = useState(false);
     const [renderOptions, setRenderOptions] = useState(false);
     const getTypeOfRender = () => {
-        if (renderProfile) {
-            return <NavBar>Login/profile</NavBar>
+        if (renderProfile && !signed) {
+            return (
+                <NavBar>
+                    <LoginButtonProfile />
+                </NavBar>
+            )
+        }
+        if (renderProfile && signed) {
+            return (
+                <NavBar>
+                   <ProfileUser />
+                </NavBar>
+            )
         }
         if (renderOptions) {
             return (
@@ -20,7 +36,7 @@ const TopBar = () => {
             )
         }
 
-        return <></>
+        return;
     }
     return (
         <Header>

@@ -19,12 +19,14 @@ const HeaderIcons = ({ setRenderProfile, setRenderOptions }) => {
         setRenderProfile(profile => !profile);
         setRenderOptions(false);
         setColorProfile(!colorProfile);
+        setColorOptions(false);
     }
 
     const handleOptions = () => {
         setRenderOptions(options => !options);
         setRenderProfile(false);
         setColorOptions(!colorOptions);
+        setColorProfile(false);
     }
 
 
