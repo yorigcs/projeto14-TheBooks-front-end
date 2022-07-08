@@ -7,11 +7,11 @@ import AllBooksLink from "./AllBooksLink";
 import { useAuth } from "../../contexts/auth";
 import LoginButtonProfile from "./LoginButtonProfile";
 const TopBar = () => {
-    const { signed } = useAuth();
+    const { signed, userInfo } = useAuth();
     const [renderProfile, setRenderProfile] = useState(false);
     const [renderOptions, setRenderOptions] = useState(false);
     const getTypeOfRender = () => {
-        if (renderProfile) {
+        if (renderProfile && !signed) {
             return (
                 <NavBar>
                     <LoginButtonProfile />
@@ -21,7 +21,7 @@ const TopBar = () => {
         if (renderProfile && signed) {
             return (
                 <NavBar>
-                    Ta logado pow
+                    bem vindo {userInfo.name}
                 </NavBar>
             )
         }

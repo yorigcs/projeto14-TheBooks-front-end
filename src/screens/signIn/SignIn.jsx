@@ -2,12 +2,13 @@ import { TextField, Button } from "@mui/material";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import isValideData from "./isValideData";
-import signInRequest from "./signInRequest";
 import handleButtonMessage from "../../shared/buttons/handleButtonMessage";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/auth";
 
 
 const SignUpForm = () => {
+    const { signIn } = useAuth()
     const [signInData, setSignIndata] = useState(
         {
             email: "",
@@ -30,7 +31,7 @@ const SignUpForm = () => {
 
     const handleSendData = () => {
         if (isValideData(signInData, setEmailError, setPasswordError)) {
-            signInRequest(signInData, setLoading, setError, setSucess, setErrorMessage);
+            signIn(signInData, setLoading, setError, setSucess, setErrorMessage);
         }
     }
 
@@ -66,8 +67,8 @@ const SignUpForm = () => {
                 </Button>
                 {errorMessage ? <ErrorContainer>{errorMessage}</ErrorContainer> : null}
                 <LinkContainer>
-                <h2>Não possui uma conta?</h2>
-                <Link to="/signup">Cadastre-se</Link>
+                    <h2>Não possui uma conta?</h2>
+                    <Link to="/signup">Cadastre-se</Link>
                 </LinkContainer>
             </SignInContainer>
 
