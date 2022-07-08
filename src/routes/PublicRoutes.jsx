@@ -4,6 +4,7 @@ import AllBooks from '../screens/allBooks';
 import CheckOut from '../screens/checkout'
 import Book from '../screens/Book';
 import SignUp from '../screens/signUp';
+import SignIn from '../screens/signIn';
 const PublicRoutes = () => (
     <Routes>
         <Route path='/' element={<Home />}></Route>
@@ -13,6 +14,7 @@ const PublicRoutes = () => (
             <Route path=':id' element={<Book />} />
         </Route>
         <Route path='/signUp' element={<SignUp />}></Route>
+        <Route path='/signIn' element={<SignIn />}></Route>
     </Routes>
 )
 export default PublicRoutes;
