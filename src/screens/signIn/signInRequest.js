@@ -1,9 +1,11 @@
 import axiosI from "../../services/axios";
-
+import { useAuth } from "../../contexts/auth";
 const signInRequest = async (signInData, setLoading, setError, setSucess, setErrorMessage) => {
+    const { setUserInfo } = useAuth();
     setLoading(true);
     try {
-        await axiosI.post("/sign-in", signInData);
+        const { data } = await axiosI.post("/sign-in", signInData);
+        setUserInfo(data.user);
         setLoading(false);
         setSucess(true);
 

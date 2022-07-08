@@ -4,12 +4,26 @@ import HeaderIcons from "./HeaderIcons";
 import { useState } from "react";
 import Search from "./Search";
 import AllBooksLink from "./AllBooksLink";
+import { useAuth } from "../../contexts/auth";
+import LoginButtonProfile from "./LoginButtonProfile";
 const TopBar = () => {
+    const { signed } = useAuth();
     const [renderProfile, setRenderProfile] = useState(false);
     const [renderOptions, setRenderOptions] = useState(false);
     const getTypeOfRender = () => {
         if (renderProfile) {
-            return <NavBar>Login/profile</NavBar>
+            return (
+                <NavBar>
+                    <LoginButtonProfile />
+                </NavBar>
+            )
+        }
+        if (renderProfile && signed) {
+            return (
+                <NavBar>
+                    Ta logado pow
+                </NavBar>
+            )
         }
         if (renderOptions) {
             return (
