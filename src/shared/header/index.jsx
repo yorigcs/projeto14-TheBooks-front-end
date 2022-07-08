@@ -6,8 +6,10 @@ import Search from "./Search";
 import AllBooksLink from "./AllBooksLink";
 import { useAuth } from "../../contexts/auth";
 import LoginButtonProfile from "./LoginButtonProfile";
+import ProfileUser from "./ProfileUser";
+
 const TopBar = () => {
-    const { signed, userInfo } = useAuth();
+    const { signed } = useAuth();
     const [renderProfile, setRenderProfile] = useState(false);
     const [renderOptions, setRenderOptions] = useState(false);
     const getTypeOfRender = () => {
@@ -21,7 +23,7 @@ const TopBar = () => {
         if (renderProfile && signed) {
             return (
                 <NavBar>
-                    bem vindo {userInfo.name}
+                   <ProfileUser />
                 </NavBar>
             )
         }
