@@ -8,7 +8,7 @@ const LoginButtonProfile = () => {
         <ButtonContainer>
             <Button
                 variant="contained"
-                onClick={() => navigate("../signIn", { replace: true })}
+                onClick={() => navigate("/signIn")}
             >Entrar
             </Button>
         </ButtonContainer>
