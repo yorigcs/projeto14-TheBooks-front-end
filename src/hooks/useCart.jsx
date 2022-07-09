@@ -57,8 +57,61 @@ export function CartProvider({ children }) {
     }
   }
 
+  async function updateProductAmount({ productId, amount }) {
+    try {
+      if (amount <= 0) return;
+
+      const stockProductAmount = await axiosI
+        .get(`/book/${productId}`)
+        .then(({ data }) => data.availables);
+
+      if (amount > stockProductAmount) {
+        console.log('Quantidade solicitada fora de estoque');
+        return;
+      }
+
+      const cartUpdated = [...cart];
+
+      const foundProductInCart = cartUpdated.find(
+        (product) => product._id === productId
+      );
+
+      if (foundProductInCart) {
+        foundProductInCart.amount = amount;
+        setCart(cartUpdated);
+        localStorage.setItem('theBooksCart', JSON.stringify(cartUpdated));
+      } else {
+        throw Error();
+      }
+    } catch {
+      console.log('Erro na alteração de quantidade do produto');
+    }
+  }
+
+  function removeProduct(productId) {
+    try {
+      const cartUpdated = [...cart];
+
+      const indexProductCart = cartUpdated.findIndex(
+        (product) => product._id === productId
+      );
+
+      if (indexProductCart >= 0) {
+        cartUpdated.splice(indexProductCart, 1);
+        setCart(cartUpdated);
+        localStorage.setItem('theBooksCart', JSON.stringify(cartUpdated));
+      } else {
+        throw Error();
+      }
+    } catch {
+      console.log('Erro na remoção do produto');
+    }
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addProduct }}>
+    <CartContext.Provider
+      value={{ cart, addProduct, updateProductAmount, removeProduct }}
+    >
       {children}
     </CartContext.Provider>
   );

@@ -11,7 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Container, ProductTable, Total } from './styles';
 
 export default function Cart() {
-  const { cart } = useCart();
+  const { cart, updateProductAmount, removeProduct } = useCart();
 
   const cartFormatted = cart.map((product) => ({
     ...product,
@@ -23,6 +23,18 @@ export default function Cart() {
       return sumTotal + product.price * product.amount;
     }, 0)
   );
+
+  function handleProductIncrement(product) {
+    updateProductAmount({ productId: product._id, amount: product.amount + 1 });
+  }
+
+  function handleProductDecrement(product) {
+    updateProductAmount({ productId: product._id, amount: product.amount - 1 });
+  }
+
+  function handleRemoveProduct(productId) {
+    removeProduct(productId);
+  }
 
   return (
     <>
@@ -55,6 +67,7 @@ export default function Cart() {
                       type="button"
                       data-testid="decrement-product"
                       disabled={product.amount <= 1}
+                      onClick={() => handleProductDecrement(product)}
                     >
                       <RemoveIcon />
                     </button>
@@ -64,7 +77,11 @@ export default function Cart() {
                       readOnly
                       value={product.amount}
                     />
-                    <button type="button" data-testid="increment-product">
+                    <button
+                      type="button"
+                      data-testid="increment-product"
+                      onClick={() => handleProductIncrement(product)}
+                    >
                       <AddIcon />
                     </button>
                   </div>
@@ -73,7 +90,11 @@ export default function Cart() {
                   <strong>{product.subTotal}</strong>
                 </td>
                 <td>
-                  <button type="button" data-testid="remove-product">
+                  <button
+                    type="button"
+                    data-testid="remove-product"
+                    onClick={() => handleRemoveProduct(product._id)}
+                  >
                     <DeleteIcon />
                   </button>
                 </td>

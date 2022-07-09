@@ -75,6 +75,7 @@ export const ProductTable = styled.table`
     background: none;
     border: 0;
     padding: 6px;
+    cursor: pointer;
 
     svg {
       color: #7159c1;
