@@ -37,7 +37,7 @@ const HeaderIcons = ({ setRenderProfile, setRenderOptions }) => {
             </IconStyle>
 
             <IconStyle>
-                <ShoppingCartIcon onClick={() =>navigate("/checkout", {replace: false}) } sx={{ fontSize: 28 }} />
+                <ShoppingCartIcon onClick={() =>navigate("/cart", {replace: false}) } sx={{ fontSize: 28 }} />
                 <span>{cartSize}</span>
             </IconStyle>
 
