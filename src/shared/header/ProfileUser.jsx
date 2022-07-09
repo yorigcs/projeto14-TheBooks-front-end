@@ -7,7 +7,7 @@ const ProfileUser = () => {
     return (
         <Container>
             <h2>{`Olá, ${userInfo.name}!`}</h2>
-            <Link to="/">Meu perfil</Link>
+            <Link to="/myProfile">Meu perfil</Link>
             <Link to="/">Meus Livros</Link>
             <Link to="/">Minhas compras</Link>
             <span onClick={signOut}>Sair</span>
