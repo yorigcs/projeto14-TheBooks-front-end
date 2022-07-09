@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { ThreeDots } from 'react-loader-spinner';
+import { Link } from 'react-router-dom';
 
 import axiosI from '../../services/axios';
 
@@ -42,10 +43,12 @@ export function BestSellersBooks() {
           <ThreeDots width="4em" height="4em" color="white" />
         ) : (
           bestSellers?.map((book) => (
-            <Book key={book._id}>
-              <img src={book.image} alt={book.name} />
-              <h3>Quantidade venda: {book.soldNumber}</h3>
-            </Book>
+            <Link to={`/book/${book._id}`} key={book._id}>
+              <Book>
+                <img src={book.image} alt={book.name} />
+                <h3>Quantidade venda: {book.soldNumber}</h3>
+              </Book>
+            </Link>
           ))
         )}
       </BooksContainer>
