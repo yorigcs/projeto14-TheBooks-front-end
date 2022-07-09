@@ -1,6 +1,5 @@
-
 import axiosI from "../../services/axios";
-const myProfileRequest = async (passwordData, setLoading, setError, setSucess, setErrorMessage) => {
+const myProfileRequest = async (passwordData,signOut, setLoading, setError, setSucess, setErrorMessage) => {
     setLoading(true);
     try {
         await axiosI.put("/updateProfile", passwordData);
@@ -11,6 +10,10 @@ const myProfileRequest = async (passwordData, setLoading, setError, setSucess, s
         setLoading(false);
         setError(true);
         setErrorMessage(err.response.data);
+        if(err.response.status === 401) {
+            //signOut();
+
+        }
         setTimeout(() => {
             setError(false);
             setErrorMessage(null);

@@ -26,10 +26,12 @@ export const AuthProvider = ({ children }) => {
 
             const { data } = await axiosI.post("/sign-in", signInData);
             setUserInfo(data.user);
+            axiosI.defaults.headers["Authorization"] = `Bearer ${data.token}`;
             localStorage.setItem("TBAuthUser",JSON.stringify(data.user));
             localStorage.setItem("TBAuthToken", data.token);
+            
 
-            setTimeout(() => {navigate("../", {replace: true})}, 2000)
+            setTimeout(() => {navigate("/")}, 2000)
     
         } catch (err) {
             setLoading(false);

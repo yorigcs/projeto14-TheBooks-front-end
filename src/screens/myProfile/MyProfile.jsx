@@ -1,13 +1,15 @@
 import { TextField, Button } from "@mui/material";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import isValideData from "./isValideData";
 import myProfileRequest from "./myProfileRequest";
 import handleButtonMessage from "../../shared/buttons/handleButtonMessage";
 import { useAuth } from "../../contexts/auth";
+import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
-    const { userInfo } = useAuth();
+    let navigate = useNavigate();
+    const { userInfo, signOut } = useAuth();
     const [passwordData, setPasswordData] = useState(
         {
             email: userInfo.email,
@@ -31,7 +33,10 @@ const MyProfile = () => {
 
     const handleSendData = () => {
         if (isValideData(passwordData, setOldPasswordError, setNewPasswordError)) {
-            myProfileRequest(passwordData, setLoading, setError, setSucess, setErrorMessage);
+          myProfileRequest(passwordData, signOut, setLoading, setError, setSucess, setErrorMessage);
+          if(!!errorMessage) {
+            navigate("/", {replace: true});
+          }
         }
     }
 
