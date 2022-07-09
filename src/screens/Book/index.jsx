@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
+
+import { useCart } from '../../hooks/useCart';
+
 import axiosI from '../../services/axios';
 import TopBar from '../../shared/header';
 
@@ -17,6 +20,8 @@ import {
 } from './styles';
 
 export default function Book() {
+  const { addProduct } = useCart();
+
   const [book, setBook] = useState({});
   const [bookSummary, setBookSummary] = useState('');
   const [isSummary, setIsSummary] = useState(false);
@@ -79,7 +84,7 @@ export default function Book() {
             )}
 
             <ButtonWrapper>
-              <Button onClick={handleAddToCart}>Adicionar ao carrinho</Button>
+              <Button onClick={() => addProduct(book._id)}>Adicionar ao carrinho</Button>
             </ButtonWrapper>
           </SummaryWrapper>
         </Display>
