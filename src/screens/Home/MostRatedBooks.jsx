@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { ThreeDots } from 'react-loader-spinner';
 import { Pagination } from 'swiper';
@@ -58,10 +59,12 @@ export function MostRatedBooks() {
           >
             {mostRatedBooks?.map((book) => (
               <SwiperSlide key={book._id}>
-                <Book>
-                  <img src={book.image} alt={book.name} />
-                  <h3>Avaliação: {book.rate}</h3>
-                </Book>
+                <Link to={`/book/${book._id}`}>
+                  <Book>
+                    <img src={book.image} alt={book.name} />
+                    <h3>Avaliação: {book.rate}</h3>
+                  </Book>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 import axiosI from "../../services/axios";
 import { useState, useEffect } from "react";
@@ -64,10 +66,12 @@ const LastBooks = () => {
 }
 
 const RenderBook = ({ id, name, image }) => (
-    <Book id={id}>
-        <img src={image} alt={name} />
-        <h2>{name}</h2>
-    </Book>
+    <Link to={`/book/${id}`} >
+        <Book id={id}>
+            <img src={image} alt={name} />
+            <h2>{name}</h2>
+        </Book>
+    </Link>
 )
 
 const Book = styled.div`
