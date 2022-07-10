@@ -11,9 +11,9 @@ import { useAuth } from '../../contexts/auth';
 import requestOrder from './requestOrder';
 
 export default function Cart({ to, message, isSigned = false }) {
-  const {userInfo, signOut} = useAuth();
+  const { userInfo, signOut } = useAuth();
   let navigate = useNavigate();
-  const { cart, updateProductAmount, removeProduct } = useCart();
+  const { cart, updateProductAmount, removeProduct, setCart } = useCart();
 
   const cartFormatted = cart.map((product) => ({
     ...product,
@@ -38,8 +38,8 @@ export default function Cart({ to, message, isSigned = false }) {
     removeProduct(productId);
   }
   function handleCreateOrder() {
-    
-    const Books = cart.map(books => {
+
+    const books = cart.map(books => {
       return (
         {
           id: books._id,
@@ -50,14 +50,18 @@ export default function Cart({ to, message, isSigned = false }) {
         }
       )
     })
-    
+
     const orderData = {
       user: userInfo.email,
-      Books,
+      books,
     }
-    //TODO request
-    //requestOrder(orderData, signOut)
-    console.log("requestOrder");
+    const sucess = () => {
+      setCart([])
+      localStorage.removeItem('theBooksCart');
+
+    }
+
+    requestOrder(orderData, signOut, sucess)
   }
 
   return (
