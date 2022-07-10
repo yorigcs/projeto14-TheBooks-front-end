@@ -1,3 +1,11 @@
+import TopBar from "../../shared/header";
 import Checkout from "./Checkout"
-
-export default Checkout;
+const CheckoutScreen = () => {
+    return (
+        <>
+            <TopBar />
+            <Checkout />
+        </>
+    )
+}
+export default CheckoutScreen;
