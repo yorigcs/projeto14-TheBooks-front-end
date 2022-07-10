@@ -5,14 +5,12 @@ import isValideData from "./isValideData";
 import myProfileRequest from "./myProfileRequest";
 import handleButtonMessage from "../../shared/buttons/handleButtonMessage";
 import { useAuth } from "../../contexts/auth";
-import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
-    let navigate = useNavigate();
     const { userInfo, signOut } = useAuth();
     const [passwordData, setPasswordData] = useState(
         {
-            email: userInfo.email,
+            user: userInfo.email,
             oldPassword: "",
             newPassword: "",
         })
