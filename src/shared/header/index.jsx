@@ -7,11 +7,13 @@ import AllBooksLink from "./AllBooksLink";
 import { useAuth } from "../../contexts/auth";
 import LoginButtonProfile from "./LoginButtonProfile";
 import ProfileUser from "./ProfileUser";
+import Cart from "../Cart";
 
 const TopBar = () => {
     const { signed } = useAuth();
     const [renderProfile, setRenderProfile] = useState(false);
     const [renderOptions, setRenderOptions] = useState(false);
+    const [renderCart, setRenderCart] = useState(false);
     const getTypeOfRender = () => {
         if (renderProfile && !signed) {
             return (
@@ -35,6 +37,13 @@ const TopBar = () => {
                 </NavBar>
             )
         }
+        if(renderCart) {
+            return (
+                <NavBar>
+                    <Cart to="/checkout" message="Ir para o checkout" />
+                </NavBar>
+            )
+        }
 
         return;
     }
@@ -44,6 +53,7 @@ const TopBar = () => {
             <HeaderIcons
                 setRenderProfile={setRenderProfile}
                 setRenderOptions={setRenderOptions}
+                setRenderCart={setRenderCart}
             />
             {getTypeOfRender()}
         </Header>

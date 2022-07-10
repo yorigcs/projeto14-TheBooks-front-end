@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ListIcon from '@mui/icons-material/List';
 
 import { useCart } from '../../hooks/useCart'
 
-const HeaderIcons = ({ setRenderProfile, setRenderOptions }) => {
-    let navigate = useNavigate()
+const HeaderIcons = ({ setRenderProfile, setRenderOptions, setRenderCart }) => {
     const [colorProfile, setColorProfile] = useState(false);
     const [colorOptions, setColorOptions] = useState(false);
+    const [colorCart, setColorCart] = useState(false);
+
 
     const { cart } = useCart();
     const cartSize = cart.length;
@@ -18,15 +18,28 @@ const HeaderIcons = ({ setRenderProfile, setRenderOptions }) => {
     const handleProfile = () => {
         setRenderProfile(profile => !profile);
         setRenderOptions(false);
+        setRenderCart(false);
         setColorProfile(!colorProfile);
         setColorOptions(false);
+        setColorCart(false);
     }
 
     const handleOptions = () => {
         setRenderOptions(options => !options);
         setRenderProfile(false);
+        setRenderCart(false);
         setColorOptions(!colorOptions);
         setColorProfile(false);
+        setColorCart(false);
+    }
+
+    const handleCart = () => {
+        setRenderCart(cart => !cart);
+        setRenderProfile(false);
+        setRenderOptions(false);
+        setColorCart(!colorCart);
+        setColorProfile(false);
+        setColorOptions(false);
     }
 
 
@@ -36,8 +49,8 @@ const HeaderIcons = ({ setRenderProfile, setRenderOptions }) => {
                 <PersonIcon sx={{ fontSize: 28 }} />
             </IconStyle>
 
-            <IconStyle>
-                <ShoppingCartIcon onClick={() =>navigate("/cart", {replace: false}) } sx={{ fontSize: 28 }} />
+            <IconStyle changeColor={colorCart} onClick={handleCart}>
+                <ShoppingCartIcon  sx={{ fontSize: 28 }} />
                 <span>{cartSize}</span>
             </IconStyle>
 
