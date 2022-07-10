@@ -29,9 +29,7 @@ export const AuthProvider = ({ children }) => {
             axiosI.defaults.headers["Authorization"] = `Bearer ${data.token}`;
             localStorage.setItem("TBAuthUser",JSON.stringify(data.user));
             localStorage.setItem("TBAuthToken", data.token);
-            
-
-            setTimeout(() => {navigate("/")}, 2000)
+            navigate("/")
     
         } catch (err) {
             setLoading(false);
@@ -46,6 +44,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const signOut = () => {
+        navigate("/")
         setUserInfo(null);
         localStorage.removeItem("TBAuthUser");
         localStorage.removeItem("TBAuthToken");
