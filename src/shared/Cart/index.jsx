@@ -8,9 +8,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import { Container, ProductTable, Total } from "./styles";
 import { useAuth } from '../../contexts/auth';
+import requestOrder from './requestOrder';
 
 export default function Cart({ to, message, isSigned = false }) {
-  const {userInfo} = useAuth();
+  const {userInfo, signOut} = useAuth();
   let navigate = useNavigate();
   const { cart, updateProductAmount, removeProduct } = useCart();
 
@@ -54,7 +55,7 @@ export default function Cart({ to, message, isSigned = false }) {
       user: userInfo.email,
       Books,
     }
-    console.log(orderData)
+    requestOrder(orderData, signOut)
   }
 
   return (
