@@ -1,6 +1,6 @@
 import { TextField, Button } from "@mui/material";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import isValideData from "./isValideData";
 import myProfileRequest from "./myProfileRequest";
 import handleButtonMessage from "../../shared/buttons/handleButtonMessage";
@@ -34,12 +34,8 @@ const MyProfile = () => {
     const handleSendData = () => {
         if (isValideData(passwordData, setOldPasswordError, setNewPasswordError)) {
           myProfileRequest(passwordData, signOut, setLoading, setError, setSucess, setErrorMessage);
-          if(!!errorMessage) {
-            navigate("/", {replace: true});
-          }
         }
     }
-
 
     return (
         <Container>
@@ -48,6 +44,7 @@ const MyProfile = () => {
                 <TextField
                     name="oldPassword"
                     label="Senha atual"
+                    type="password"
                     value={passwordData.oldPassword}
                     onChange={handleChangeText}
                     error={!!oldPasswordError}

@@ -11,8 +11,7 @@ const myProfileRequest = async (passwordData,signOut, setLoading, setError, setS
         setError(true);
         setErrorMessage(err.response.data);
         if(err.response.status === 401) {
-            //signOut();
-
+            signOut();
         }
         setTimeout(() => {
             setError(false);
