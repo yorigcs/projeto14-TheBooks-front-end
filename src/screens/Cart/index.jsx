@@ -1,5 +1,5 @@
 import { useCart } from '../../hooks/useCart';
-
+import { useNavigate } from 'react-router-dom';
 import { formatPrice } from '../../util/format';
 
 import TopBar from '../../shared/header';
@@ -11,6 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Container, ProductTable, Total } from './styles';
 
 export default function Cart() {
+  let navigate = useNavigate();
   const { cart, updateProductAmount, removeProduct } = useCart();
 
   const cartFormatted = cart.map((product) => ({
@@ -104,7 +105,7 @@ export default function Cart() {
         </ProductTable>
 
         <footer>
-          <button type="button">Finalizar pedido</button>
+          <button type="button" onClick={() => navigate("/checkout")}>Finalizar pedido</button>
 
           <Total>
             <span>TOTAL</span>
