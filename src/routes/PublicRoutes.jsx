@@ -5,7 +5,6 @@ import CheckOut from '../screens/checkout'
 import Book from '../screens/Book';
 import SignUp from '../screens/signUp';
 import SignIn from '../screens/signIn';
-import Cart from '../screens/Cart';
 
 const PublicRoutes = () => (
     <Routes>
@@ -17,7 +16,6 @@ const PublicRoutes = () => (
         </Route>
         <Route path='/signUp' element={<SignUp />}></Route>
         <Route path='/signIn' element={<SignIn />}></Route>
-        <Route path='/cart' element={<Cart />}></Route>
     </Routes>
 )
 export default PublicRoutes;
