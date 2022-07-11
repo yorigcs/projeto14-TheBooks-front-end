@@ -15,7 +15,8 @@ export const Display = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
 `;
 
 export const Image = styled.img``;
@@ -24,7 +25,7 @@ export const SummaryWrapper = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 100%;
+  flex: 1;
 `;
 
 export const ButtonWrapper = styled.div`
