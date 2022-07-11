@@ -20,13 +20,22 @@ const MyOrders = () => {
                 }
             })
     }, []);
-    useEffect(() => { console.log(myOrders) }, [myOrders]);
+    function renderType() {
+        if (myOrders.length === 0) {
+            return (
+                <OrdersContainerEmpty>
+                    <span>Ainda não foi feito nenhum pedido!</span>
+                </OrdersContainerEmpty>
+            )
+        }
+        return (
+            <OrdersContainer>
+                {myOrders.map((order) => <Order key={order._id} {...order} />)}
+            </OrdersContainer>
+        )
+    }
 
-    return (
-        <OrdersContainer>
-            {myOrders.map((order) => <Order key={order._id} {...order} />)}
-        </OrdersContainer>
-    )
+    return renderType()
 }
 
 const OrdersContainer = styled.main`
@@ -34,7 +43,15 @@ const OrdersContainer = styled.main`
     flex-direction:column;
     gap: 0.5rem;
     padding: 2rem;
+`;
 
+const OrdersContainerEmpty = styled.main`
+    color: white;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem;
 `;
 
 
