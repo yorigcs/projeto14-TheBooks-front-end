@@ -4,6 +4,8 @@ export const Container = styled.div`
   background-color: #8eb6eb;
 
   padding: 1rem 1.25rem;
+
+  margin-top: 0.25rem;
 `;
 
 export const Heading = styled.h2``;

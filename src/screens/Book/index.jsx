@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import { useCart } from '../../hooks/useCart';
 
+import { formatPrice } from '../../util/format';
+
 import axiosI from '../../services/axios';
 import TopBar from '../../shared/header';
 
@@ -23,32 +25,20 @@ export default function Book() {
   const { addProduct } = useCart();
 
   const [book, setBook] = useState({});
-  const [bookSummary, setBookSummary] = useState('');
   const [isSummary, setIsSummary] = useState(false);
 
   const { id } = useParams();
 
   useEffect(() => {
     axiosI.get(`/book/${id}`).then(({ data }) => {
-      setBook(data);
-      setBookSummary(data.summary);
+      const booksFormatted = {
+        ...data,
+        priceFormatted: formatPrice(data.price),
+      };
+
+      setBook(booksFormatted);
     });
   }, []);
-
-  function handleAddToCart() {
-    const booksCart = localStorage.getItem('theBooksCart');
-    if (booksCart) {
-      const booksCartParsed = JSON.parse(booksCart);
-      const booksArray = [...booksCartParsed, book];
-      const booksArrayJSON = JSON.stringify(booksArray);
-      localStorage.setItem('theBooksCart', booksArrayJSON);
-      return;
-    }
-
-    const booksArray = [book];
-    const booksArrayJSON = JSON.stringify(booksArray);
-    localStorage.setItem('theBooksCart', booksArrayJSON);
-  }
 
   return (
     <>
@@ -77,14 +67,16 @@ export default function Book() {
               <Info>
                 <p>Autor: {book.author}</p>
                 <p>Categoria: {book.category}</p>
-                <p>Preço: {book.price}</p>
+                <p>Preço: {book.priceFormatted}</p>
                 <p>Lançamento: {book.releaseDate}</p>
                 <p>Avaliação: {book.rate}</p>
               </Info>
             )}
 
             <ButtonWrapper>
-              <Button onClick={() => addProduct(book._id)}>Adicionar ao carrinho</Button>
+              <Button onClick={() => addProduct(book._id)}>
+                Adicionar ao carrinho
+              </Button>
             </ButtonWrapper>
           </SummaryWrapper>
         </Display>

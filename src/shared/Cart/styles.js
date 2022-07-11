@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 30px;
+  padding: 2rem 0.85rem;
   background: #fff;
   border-radius: 4px;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 
   footer {
     margin-top: 30px;
@@ -31,6 +35,12 @@ export const Container = styled.div`
 export const ProductTable = styled.table`
   width: 100%;
 
+  @media screen and (max-width: 500px) {
+    tbody tr td {
+      padding: 5px;
+    }
+  }
+
   thead th {
     color: #999;
     text-align: left;
@@ -56,6 +66,10 @@ export const ProductTable = styled.table`
     margin-top: 5px;
     font-size: 18px;
     font-weight: bold;
+
+    @media screen and (max-width: 500px) {
+      font-size: 0.75rem;
+    }
   }
 
   div {
