@@ -17,7 +17,7 @@ import {
 export function BestSellersBooks() {
   const [bestSellers, setBestSellers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [numBooks, setNumBooks] = useState(1);
+  const [numBooks, setNumBooks] = useState(4);
 
   useEffect(() => {
     setIsLoading(true);
@@ -46,7 +46,7 @@ export function BestSellersBooks() {
             <Link to={`/book/${book._id}`} key={book._id}>
               <Book>
                 <img src={book.image} alt={book.name} />
-                <h3>Quantidade venda: {book.soldNumber}</h3>
+                <h3>{book.name}</h3>
               </Book>
             </Link>
           ))

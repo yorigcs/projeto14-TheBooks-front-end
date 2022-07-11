@@ -5,6 +5,11 @@
   padding-bottom: 2rem;
 }
 
+.swiper-wrapper {
+  display: flex;
+  gap: 1.5rem;
+}
+
 .swiper-slide {
   text-align: center;
   font-size: 18px;
@@ -23,4 +28,3 @@
   -webkit-align-items: center;
   align-items: center;
 }
-

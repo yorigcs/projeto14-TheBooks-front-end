@@ -62,7 +62,7 @@ export function MostRatedBooks() {
                 <Link to={`/book/${book._id}`}>
                   <Book>
                     <img src={book.image} alt={book.name} />
-                    <h3>Avaliação: {book.rate}</h3>
+                    <h3>{book.rate}</h3>
                   </Book>
                 </Link>
               </SwiperSlide>

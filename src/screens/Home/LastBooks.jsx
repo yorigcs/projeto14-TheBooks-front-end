@@ -87,11 +87,10 @@ const Book = styled.div`
 `;
 
 const LastBooksContainer = styled.div`
-    margin-top: 5rem;
     padding: 1rem 1.25rem;
     background-color: #8D8EEE;
-
 `;
+
 const BooksContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
