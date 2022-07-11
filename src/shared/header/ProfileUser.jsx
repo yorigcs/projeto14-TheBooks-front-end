@@ -8,7 +8,7 @@ const ProfileUser = () => {
         <Container>
             <h2>{`Olá, ${userInfo.name}!`}</h2>
             <Link to="/myProfile">Meu perfil</Link>
-            <Link to="/">Minhas compras</Link>
+            <Link to="/myOrders">Minhas compras</Link>
             <span onClick={signOut}>Sair</span>
         </Container>
 

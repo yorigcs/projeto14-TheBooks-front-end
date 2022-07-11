@@ -7,6 +7,7 @@ import SignUp from '../screens/signUp';
 import SignIn from '../screens/signIn';
 
 import MyProfile from "../screens/myProfile"
+import MyOrders from "../screens/myOrders/";
 const PrivateRoutes = () => (
     <Routes>
         <Route path='/' element={<Home />}></Route>
@@ -20,6 +21,7 @@ const PrivateRoutes = () => (
 
 
         <Route path="/myProfile" element={<MyProfile />}></Route>
+        <Route path="/myOrders" element={<MyOrders />}></Route>
     </Routes>
 )
 
